@@ -9,17 +9,12 @@ import re
 import ast
 from sklearn.model_selection import train_test_split
 
-
-
-output_name_train = 'C:/Users/danie/Documents/GitHub/Delirium-Tremens/data/annon_coco_train.json'
-output_name_test = 'C:/Users/danie/Documents/GitHub/Delirium-Tremens/data/annon_coco_test.json'
-
-
 class CocoTransformer():
     
     def __init__(self, config):
         
         self.test_split = config['test_split']
+        self.raw_image_folder = config['raw_image_folder']
 
         self.image_folder_train = config['image_folder'] + 'train/'
         if not os.path.exists(self.image_folder_train):
@@ -46,15 +41,14 @@ class CocoTransformer():
                     'name': cat.replace(' ','_')
                 })
                 
-                
             sub_index = 0 
             for num_image, image_path in tqdm(enumerate(image_list), total=len(image_list)):
 
                 extension = re.findall('\.(.*)$', image_path)[0]
                 image_name = str(num_image).zfill(7) + '.' + extension
-                shutil.copy(image_path, image_folder + image_name)
+                shutil.copy(self.raw_image_folder + image_path, image_folder + image_name)
 
-                with Image.open(image_path) as imag:
+                with Image.open(self.raw_image_folder + image_path) as imag:
                     width, height = imag.size
 
                 dataset_dict['images'].append({
@@ -91,11 +85,11 @@ class CocoTransformer():
         
     def transform(self, list_dict_annon):
         
-        self.annon_df = pd.read_csv(list_dict_annon)
+        self.annon_df = pd.DataFrame(list_dict_annon)
         self.cat2id_map = {cat:index_cat for index_cat, cat in enumerate(list(set(self.annon_df.labels)))}
 
         image_list = list(set(self.annon_df.im_path))
         image_list_train, image_list_test = train_test_split(image_list, test_size=self.test_split, random_state=42)  
 
-        CocoTransformer.train_test_split(image_list_train, self.image_folder_train)  
-        CocoTransformer.train_test_split(image_list_test, self.image_folder_test)  
+        CocoTransformer.create_dataset(self, image_list_train, self.image_folder_train)  
+        CocoTransformer.create_dataset(self, image_list_test, self.image_folder_test)  

@@ -5,19 +5,19 @@ from ZeroShotObjectDetection import ZeroShotObjectDetection
 from CocoTransformer import CocoTransformer
 
 config = {}
-config['raw_image_folder'] = 'E:/Datasets/Furniture_v2/image'
+config['raw_image_folder'] = 'C:/Users/danie/Pictures/homedeco/wine/'
 config['model_zeroshotobjectdetection'] = "google/owlvit-base-patch32"
-config['categories_list'] = ['couch', 'kitchen island', 'armoire', 'chair', 'lamp', 'vanity', 'mirror', 'footstool', 'shelve', 'curtain', 'art frame', 'flower pot', 'cushion', 'carpet', 'bed', 'cabinet', 'table']
+config['categories_list'] = ['bottle']
 config['conf_threshold'] = 0.2
 config['iou_threshold'] = 0.2
 config['test_split'] = 0.2
-config['image_folder'] = 'E:/Datasets/Furniture_v2/'
-config['output_folder'] = 'C:/Users/danie/Documents/GitHub/Delirium-Tremens/data/'
+config['image_folder'] = 'C:/Users/danie/Documents/Python Scripts/AdsViu/Datasets/Wine/'
+config['output_folder'] = 'C:/Users/danie/Documents/Python Scripts/AdsViu/Datasets/Wine/'
 
 if __name__ == "__main__":
     
     object_detector = ZeroShotObjectDetection(config)
     coco_transformer = CocoTransformer(config)
     
-    list_dict_detections = ZeroShotObjectDetection.predict(config['raw_image_folder'])
-    CocoTransformer.transform(list_dict_detections)
+    list_dict_detections = object_detector.predict(images_dir=config['raw_image_folder'])
+    coco_transformer.transform(list_dict_detections)

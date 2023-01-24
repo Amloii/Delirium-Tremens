@@ -79,10 +79,10 @@ class ZeroShotObjectDetection():
         index_file=0
         for _, _, files in os.walk(images_dir, topdown=False):
             for im_path in tqdm(files):
-                if im_path[-3:] in ['jpg', 'peg', 'png']:
+                if im_path[-3:] in ['jpg', 'peg', 'png', 'fif']:
                     try:
                         results = self.object_detector(
-                                im_path,
+                                images_dir + im_path,
                                 text_queries=self.categories_textseed,
                                 threshold=self.conf_threshold,
                             )
