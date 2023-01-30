@@ -5,7 +5,7 @@ from ZeroShotObjectDetection import ZeroShotObjectDetection
 from CocoTransformer import CocoTransformer
 
 config = {}
-config['raw_image_folder'] = 'C:/Users/danie/Pictures/homedeco/wine/'
+config['raw_image_folder'] = 'C:/Users/danie/Pictures/homedeco/'
 config['model_zeroshotobjectdetection'] = "google/owlvit-base-patch32"
 config['categories_list'] = ['bottle']
 config['conf_threshold'] = 0.2

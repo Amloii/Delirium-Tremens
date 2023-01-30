@@ -46,9 +46,9 @@ class CocoTransformer():
 
                 extension = re.findall('\.(.*)$', image_path)[0]
                 image_name = str(num_image).zfill(7) + '.' + extension
-                shutil.copy(self.raw_image_folder + image_path, image_folder + image_name)
+                shutil.copy(image_path, image_folder + image_name)
 
-                with Image.open(self.raw_image_folder + image_path) as imag:
+                with Image.open(image_path) as imag:
                     width, height = imag.size
 
                 dataset_dict['images'].append({

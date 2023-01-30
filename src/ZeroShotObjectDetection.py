@@ -92,7 +92,7 @@ class ZeroShotObjectDetection():
                         for bbox, score, label in zip(boxes, scores, labels):
                             
                             dict_row = {'index_file': index_file,
-                                        'im_path': im_path,
+                                        'im_path': os.path.join(root, im_path),
                                         'bbox': str(bbox),
                                         'score': str(score),
                                         'labels': label}
