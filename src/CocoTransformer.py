@@ -80,8 +80,11 @@ class CocoTransformer():
                         'id': sub_index,
                         'image_id': num_image,
                     })
+            
             with open(image_folder + 'annon_coco.json', 'w') as f:
                 json.dump(dataset_dict, f)
+
+            print(F'Dataset created in {image_folder}annon_coco.json')
         
     def transform(self, list_dict_annon):
         
