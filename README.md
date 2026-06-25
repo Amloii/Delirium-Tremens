@@ -138,7 +138,7 @@ MIT — see [LICENSE](LICENSE).
 
 Developed as a side project during his tenure as Technical Founder of Adsviu (Grupo NextChance), where the need for rapid dataset creation for visual product recognition drove the experiment.
 
-[GitHub](https://github.com/Amloii) · [LinkedIn](https://linkedin.com/in/danigdominguez) · [Portfolio](https://amloii.github.io)
+[GitHub](https://github.com/Amloii) · [LinkedIn](https://linkedin.com/in/danigdominguez) · [Portfolio](https://amloii-page.pages.dev)
 
 <br>
 
